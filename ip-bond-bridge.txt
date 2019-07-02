@@ -1,0 +1,22 @@
+CLI creating bond, vlan ,bridge
+
+- Creating bond
+ip link add bond0 type bond
+ip link set bond0 type bond miimon 100 mode active-backup
+ip link set eth0 down
+ip link set eth1 down
+ip link set eth0  master bond0
+ip link set eth1  master bond0
+ip link set bond0 up
+
+- Creating vlan against bond0
+ip link add link bond0 name bond0.2 type vlan id 2
+ip link set bond0.2 up
+
+- Creating bridge over bond vlan
+ip link add br0 type bridge
+ip link set bond0.2 master br0
+ip link set br0 up
+
+- Set ip to bridge
+ip a add 192.168.100.5/22 dev br0
