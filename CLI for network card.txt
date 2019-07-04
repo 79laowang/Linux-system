@@ -1,0 +1,9 @@
+The following CLI passed on CentOS/RHEL/Oracle Linux 7.
+1.List all network links
+ ip link
+ 
+2.List ip address of links
+ ip a
+ 
+3.List all network card businfo
+ lshw -C network -businfo
